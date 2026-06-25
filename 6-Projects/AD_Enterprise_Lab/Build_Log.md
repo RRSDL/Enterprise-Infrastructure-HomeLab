@@ -32,6 +32,24 @@
 
 ✓ Logged in using domain accounts
 
+✓ Configured DHCP Server
+
+✓ Configured DHCP Scope
+
+✓ Configured DNS Resolution
+
+✓ Implemented GPO Restrictions
+
+✓ Verified DHCP Client Leasing
+
+✓ Performed GPO Troubleshooting
+
+✓ Started PowerShell AD Administration
+
+✓ Queried Users, Groups and OUs using PowerShell
+
+✓ Managed Group Membership using PowerShell
+
 ## Current Environment
 
 DC01
@@ -56,7 +74,41 @@ Department access restrictions functioning.
 
 ## Next Steps
 
-- Verify remaining folder permissions
-- Configure Access-Based Enumeration (ABE)
-- Configure Group Policy Objects (GPO)
-- Configure Drive Mapping
+- Create users using PowerShell
+- Create groups using PowerShell
+- Automate user provisioning
+- Perform bulk user creation via CSV
+- Document PowerShell automation tasks
+- Continue screenshot collection for project portfolio
+
+## Issues Encountered & Resolutions
+GPO Restriction Applied to Administrator Account
+
+Issue:
+Control Panel and Network Connections (ncpa.cpl) could not be opened on DC01 while logged in as Administrator.
+
+Investigation:
+Used:
+
+gpresult /r
+
+to identify applied Group Policies.
+
+Finding:
+The Corporate Desktop Policy was applied and contained the setting:
+
+Prevent access to Control Panel and PC settings
+
+Resolution:
+Disabled the setting within the Corporate Desktop Policy and refreshed policies using:
+
+gpupdate /force
+
+Result:
+Control Panel and Network Connections became accessible again.
+
+Lessons Learned:
+
+Use gpresult /r to troubleshoot Group Policy issues.
+Validate GPO scope before applying restrictions.
+Test restrictive policies using non-administrative accounts first.
